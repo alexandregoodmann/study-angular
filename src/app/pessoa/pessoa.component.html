@@ -1,0 +1,32 @@
+<form [formGroup]="group">
+
+    <div class="form-group">
+        <label for="nome">Nome</label>
+        <input formControlName="nome" type="text" class="form-control" id="nome">
+        <small *ngIf="isValid('nome')?.required" class="error">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input formControlName="email" type="text" class="form-control" id="email">
+        <small *ngIf="isValid('email')?.required" class="error">Campo obrigatório</small>
+        <small *ngIf="isValid('email')?.email" class="error">Email inválido</small>
+    </div>
+
+    <div class="form-group">
+        <label for="nascimento">Nascimento</label>
+        <input formControlName="nascimento" type="date" class="form-control" id="nascimento">
+        <small *ngIf="isValid('nascimento')?.required" class="error">Campo obrigatório</small>
+        <small *ngIf="isValid('nascimento')?.after" class="error">Nascimento deve ser até hoje</small>
+    </div>
+
+    <div class="form-group">
+        <label for="obito">Óbito</label>
+        <input formControlName="obito" type="date" class="form-control" id="obito">
+        <small *ngIf="isValid('obito')?.required" class="error">Campo obrigatório</small>
+        <small *ngIf="isValid('obito')?.before" class="error">Deve ser depois do nascimento</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
