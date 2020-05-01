@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-pessoa',
@@ -15,12 +16,9 @@ export class PessoaComponent implements OnInit {
     this.group = this.fb.group({
       nome: [null, Validators.required],
       email: [null, Validators.compose([Validators.required, Validators.email])],
-      nascimento: [null, Validators.required],
+      nascimento: [null, [Validators.required, _AfterToday]],
       obito: [null, Validators.required]
-    },
-      {
-        validators: [AfterToday('nascimento'), BeforeDate('obito', 'nascimento')]
-      });
+    });
   }
 
   ngOnInit() {
@@ -38,6 +36,15 @@ export class PessoaComponent implements OnInit {
     }
   }
 
+}
+
+export function _AfterToday(control: AbstractControl): { [key: string]: any } {
+  if (!isNullOrUndefined(control.value)) {
+    const d = new Date(control.value)
+    if (d.getTime() > new Date().getTime()) {
+      return { after: true }
+    }
+  }
 }
 
 export function AfterToday(
