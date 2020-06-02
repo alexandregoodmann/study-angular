@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { PessoaComponent } from './pessoa/pessoa.component';
 import { ModalComponent } from './modal/modal.component';
 import { UsaModalComponent } from './usa-modal/usa-modal.component';
+import { FiltroNotificacoesComponent } from './filtro-notificacoes/filtro-notificacoes.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { UsaModalComponent } from './usa-modal/usa-modal.component';
     PessoaComponent,
     ModalComponent,
     UsaModalComponent,
+    FiltroNotificacoesComponent,
   ],
   imports: [
     BrowserModule,
